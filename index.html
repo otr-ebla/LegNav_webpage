@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <!-- Primary Meta Tags -->
   <meta name="title" content="Learning Social Robot Navigation By Sensing Human Legs - Alberto Vaglio et al.">
   <meta name="description" content="We propose CALF, an end-to-end neural architecture that interprets leg motion directly from LiDAR scans for safe social robot navigation, trained in the LegNav simulator.">
   <meta name="keywords" content="Social Robot Navigation, Reinforcement Learning, Human-Robot Interaction, Mobile Robotics, Gait Model, Sim-to-real Gap">
@@ -12,32 +11,20 @@
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
   
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="University of Siena">
   <meta property="og:title" content="Learning Social Robot Navigation By Sensing Human Legs">
   <meta property="og:description" content="We propose CALF, an end-to-end neural architecture that interprets leg motion directly from LiDAR scans for safe social robot navigation, trained in the LegNav simulator.">
   <meta property="og:url" content="https://albertovaglio.github.io/LegNav-Sim">
-  <meta property="og:image" content="https://albertovaglio.github.io/LegNav-Sim/static/images/social_preview.png">
+  <meta property="og:image" content="static/images/lidar_leg_occlusion.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Learning Social Robot Navigation By Sensing Human Legs - Research Preview">
-  <meta property="article:published_time" content="2026-01-01T00:00:00.000Z">
-  <meta property="article:author" content="Alberto Vaglio">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="Social Robot Navigation">
-  <meta property="article:tag" content="Reinforcement Learning">
-
-  <!-- Twitter -->
+  
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
   <meta name="twitter:title" content="Learning Social Robot Navigation By Sensing Human Legs">
   <meta name="twitter:description" content="We propose CALF, an end-to-end neural architecture that interprets leg motion directly from LiDAR scans for safe social robot navigation, trained in the LegNav simulator.">
-  <meta name="twitter:image" content="https://albertovaglio.github.io/LegNav-Sim/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="Learning Social Robot Navigation By Sensing Human Legs - Research Preview">
+  <meta name="twitter:image" content="static/images/lidar_leg_occlusion.jpg">
 
-  <!-- Academic/Research Specific -->
   <meta name="citation_title" content="Learning Social Robot Navigation By Sensing Human Legs">
   <meta name="citation_author" content="Vaglio, Alberto">
   <meta name="citation_author" content="Garulli, Andrea">
@@ -48,127 +35,29 @@
   <meta name="citation_conference_title" content="Elsevier">
   <meta name="citation_pdf_url" content="https://albertovaglio.github.io/LegNav-Sim/static/pdfs/paper.pdf">
   
-  <!-- Additional SEO -->
   <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   
-  <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://ajax.googleapis.com">
   <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
+  
   <title>Learning Social Robot Navigation By Sensing Human Legs | Academic Research</title>
   
-  <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
   
-  <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Defer non-critical JavaScript -->
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "Learning Social Robot Navigation By Sensing Human Legs",
-    "description": "We propose CALF, an end-to-end neural architecture that interprets leg motion directly from LiDAR scans for safe social robot navigation, trained in the LegNav simulator.",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "Alberto Vaglio",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "University of Siena"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "Andrea Garulli",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "University of Siena"
-        }
-      }
-    ],
-    "datePublished": "2026-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Elsevier"
-    },
-    "url": "https://albertovaglio.github.io/LegNav-Sim",
-    "image": "https://albertovaglio.github.io/LegNav-Sim/static/images/social_preview.png",
-    "keywords": ["Social Robot Navigation", "Reinforcement Learning", "Human-Robot Interaction", "Mobile Robotics", "Gait Model"],
-    "abstract": "Robots navigating among pedestrians typically sense their surroundings with a 2D LiDAR mounted close to the ground. At that height, the sensor mostly sees moving legs rather than whole people, yet most learning-based navigation methods still treat pedestrians as simple shapes like circles. This paper addresses that gap with CALF (Convolutional Attention for Leg Features)...",
-    "citation": "@article{Vaglio2026LegNav, title={Learning Social Robot Navigation By Sensing Human Legs}, author={Vaglio, Alberto and Garulli, Andrea and Giannitrapani, Antonio and Quartullo, Renato and Van Der Meer, Tommaso}, journal={Preprint submitted to Elsevier}, year={2026}}",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://albertovaglio.github.io/LegNav-Sim"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "Social Robot Navigation"
-      },
-      {
-        "@type": "Thing", 
-        "name": "Reinforcement Learning"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "University of Siena",
-    "url": "https://www.unisi.it",
-    "logo": "https://albertovaglio.github.io/LegNav-Sim/static/images/favicon.ico",
-    "sameAs": [
-      "https://github.com/albertovaglio"
-    ]
-  }
-  </script>
 </head>
 <body>
 
-
-  <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
   </button>
@@ -204,7 +93,7 @@
                   <div class="column has-text-centered">
                     <div class="publication-links">
                       
-                      <!-- PDF Link (aggiorna con il link reale se presente su arXiv) -->
+                      <!-- PDF Link -->
                       <span class="link-block">
                         <a href="static/pdfs/paper.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
@@ -251,15 +140,72 @@
 </section>
 <!-- End paper abstract -->
 
+<!-- Methodology Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Methodology & Framework</h2>
+      </div>
+    </div>
+
+    <!-- LiDAR Occlusion Row -->
+    <div class="columns is-vcentered" style="margin-top: 2rem;">
+      <div class="column is-half">
+        <img src="static/images/lidar_leg_occlusion.jpg" alt="LiDAR leg occlusion diagram" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+      </div>
+      <div class="column is-half">
+        <h3 class="title is-4">The LiDAR Blind Spot</h3>
+        <div class="content has-text-justified">
+          <p>
+            Most mobile robots are equipped with 2D LiDAR sensors mounted between 10 and 20 cm above the ground[cite: 2]. At this height, the horizontal laser plane intersects only the lower legs of nearby pedestrians, missing the shoe protruding below the scan plane[cite: 2]. As illustrated, a standard adult shoe extends 20-30 cm forward from the ankle, creating a significant, undetected obstacle during close-range interactions[cite: 2, 3]. Despite this, most frameworks approximate humans as simple circular agents, completely ignoring leg dynamics and foot geometry[cite: 2].
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NSG Model Row -->
+    <div class="columns is-vcentered" style="margin-top: 3rem;">
+      <div class="column is-half">
+        <h3 class="title is-4">Non-Slip Gait (NSG) Model</h3>
+        <div class="content has-text-justified">
+          <p>
+            To capture realistic leg dynamics, we propose the Non-Slip Gait (NSG) model, which represents each pedestrian as two alternatively moving feet rather than a single disc[cite: 2]. To avoid unrealistic artifacts like foot-skating, each foot is explicitly anchored to its last touchdown position during the stance phase, and it is free to swing only during the active half-cycle[cite: 2]. The swing-foot target dynamically updates to match the body's forward progress[cite: 2, 5]. 
+          </p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <img src="static/images/gait_coefficient.jpg" alt="Gait coefficient calculation" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+      </div>
+    </div>
+
+    <!-- LegNav Simulator Row -->
+    <div class="columns is-vcentered" style="margin-top: 3rem;">
+      <div class="column is-half">
+        <img src="static/images/sim_env.jpg" alt="LegNav Simulation Environment" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+      </div>
+      <div class="column is-half">
+        <h3 class="title is-4">LegNav 2D Simulator</h3>
+        <div class="content has-text-justified">
+          <p>
+            The NSG model is embedded in LegNav, a custom lightweight 2D simulation environment implemented entirely in JAX[cite: 2]. In this environment, each pedestrian's footprint is ray-traced individually by the simulated 2D LiDAR, replicating the exact sensor signatures a real robot encounters[cite: 2, 4]. This approach allows the CALF (Convolutional Attention for Leg Features) network to directly map raw sensor measurements to velocity commands while explicitly handling the complex ankle-height LiDAR observations generated by pedestrians[cite: 2].
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- End Methodology Section -->
+
 <!-- Youtube video -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Real-World Deployment</h2>
+      <h2 class="title is-3 has-text-centered">Real-World Deployment</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          
           <div class="publication-video">
             <iframe src="https://www.youtube.com/embed/P6gFTvi3k7w" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
@@ -275,10 +221,6 @@
     <div class="container is-max-desktop content">
       <div class="bibtex-header">
         <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
       </div>
       <pre id="bibtex-code"><code>@article{Vaglio2026LegNav,
   title={Learning Social Robot Navigation By Sensing Human Legs},
@@ -307,3 +249,90 @@
 
   </body>
   </html>
+<Per "Methodology & (1).pdf[cite: (2).pdf[cite: (ad 2] 3], 4] 4]. 5]
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">University of Siena & Uninettuno University<br>Preprint submitted to Elsevier</span>
+                <span class="eql-cntrb"><small><br><sup>*</sup>Corresponding Author</small></span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  
+                  <!-- PDF Link -->
+                  <span class="link-block">
+                    <a href="static/pdfs/paper.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/otr-ebla/LegNav-Sim" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="columns is-centered has-text-centered">
+  <div class="column is-full-width">
+    <h2 class="title is-3">Methodology & Framework</h2>
+  </div>
+</div>
+
+<!-- LiDAR Occlusion Row -->
+<div class="columns is-vcentered" style="margin-top: 2rem;">
+  <div class="column is-half">
+    <img src="static/images/lidar_leg_occlusion.jpg" alt="LiDAR leg occlusion diagram" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  </div>
+  <div class="column is-half">
+    <h3 class="title is-4">The LiDAR Blind Spot</h3>
+    <div class="content has-text-justified">
+      <p>
+        Most mobile robots are equipped with 2D LiDAR sensors mounted between 10 and 20 cm above the ground[cite: 2]. At this height, the horizontal laser plane intersects only the lower legs of nearby pedestrians, missing the shoe protruding below the scan plane[cite: 2]. As illustrated, a standard adult shoe extends 20-30 cm forward from the ankle, creating a significant, undetected obstacle during close-range interactions[cite: 2, 3]. Despite this, most frameworks approximate humans as simple circular agents, completely ignoring leg dynamics and foot geometry[cite: 2].
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- NSG Model Row -->
+<div class="columns is-vcentered" style="margin-top: 3rem;">
+  <div class="column is-half">
+    <h3 class="title is-4">Non-Slip Gait (NSG) Model</h3>
+    <div class="content has-text-justified">
+      <p>
+        To capture realistic leg dynamics, we propose the Non-Slip Gait (NSG) model, which represents each pedestrian as two alternatively moving feet rather than a single disc[cite: 2]. To avoid unrealistic artifacts like foot-skating, each foot is explicitly anchored to its last touchdown position during the stance phase, and it is free to swing only during the active half-cycle[cite: 2]. The swing-foot target dynamically updates to match the body's forward progress[cite: 2, 5]. 
+      </p>
+    </div>
+  </div>
+  <div class="column is-half">
+    <img src="static/images/gait_coefficient.jpg" alt="Gait coefficient calculation" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  </div>
+</div>
+
+<!-- LegNav Simulator Row -->
+<div class="columns is-vcentered" style="margin-top: 3rem;">
+  <div class="column is-half">
+    <img src="static/images/sim_env.jpg" alt="LegNav Simulation Environment" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+  </div>
+  <div class="column is-half">
+    <h3 class="title is-4">LegNav 2D Simulator</h3>
+    <div class="content has-text-justified">
+      <p>
+        The NSG model is embedded in LegNav, a custom lightweight 2D simulation environment implemented entirely in JAX[cite: 2]. In this environment, each pedestrian's footprint is ray-traced individually by the simulated 2D LiDAR, replicating the exact sensor signatures a real robot encounters[cite: 2, 4]. This approach allows the CALF (Convolutional Attention for Leg Features) network to directly map raw sensor measurements to velocity commands while explicitly handling the complex ankle-height LiDAR observations generated by pedestrians[cite: 2].
+      </p>
+    </div>
+  </div>
+</div>
