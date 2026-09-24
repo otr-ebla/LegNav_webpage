@@ -199,8 +199,10 @@
 <!-- CALF Network Architecture Section -->
 <section class="section is-light">
   <div class="container is-max-desktop">
+    
+    <!-- Section Title -->
     <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
+      <div class="column is-four-fifths">
         <h2 class="title is-3">CALF Network Architecture</h2>
         <p class="subtitle is-6 has-text-grey">
           Convolutional Attention for Leg Features: End-to-end processing of multi-frame LiDAR scans
@@ -208,39 +210,42 @@
       </div>
     </div>
 
-    <!-- Architecture Diagram -->
+    <!-- Centered Architecture Diagram -->
     <div class="columns is-centered">
-      <div class="column is-11 has-text-centered">
-        <figure class="image">
-          <img src="static/images/calf_architecture.png" alt="CALF Policy Architecture Diagram" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #ffffff; padding: 1rem;" />
-          <figcaption class="has-text-grey is-size-7" style="margin-top: 0.75rem;">
-            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states.
+      <div class="column is-10 has-text-centered">
+        <figure class="image is-inline-block">
+          <img src="static/images/calf_architecture.png" alt="CALF Policy Architecture Diagram" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #ffffff; padding: 1rem; max-width: 100%; height: auto;" />
+          <figcaption class="has-text-grey is-size-7 has-text-centered" style="margin-top: 0.75rem;">
+            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states[cite: 2].
           </figcaption>
         </figure>
       </div>
     </div>
 
-    <!-- Architecture Details -->
-    <div class="columns is-centered" style="margin-top: 1.5rem;">
-      <div class="column is-10">
-        <div class="content has-text-justified">
+    <!-- Centered Architecture Details -->
+    <div class="columns is-centered has-text-centered" style="margin-top: 1.5rem;">
+      <div class="column is-four-fifths">
+        <div class="content has-text-centered">
           <p>
-            The <strong>CALF</strong> architecture is tailored to extract spatiotemporal patterns from ankle-height LiDAR returns without requiring explicit tracking or clustering pipelines:
+            The <strong>CALF</strong> architecture maps raw temporal LiDAR scans directly to motion commands without requiring explicit pedestrian detection, tracking, or velocity estimation modules[cite: 2].
           </p>
-          <ul>
-            <li>
-              <strong>Perception Trunk (1D-CNN):</strong> A 3-layer 1D convolutional network with shared weights across the temporal stack processes each individual range scan. Strided convolutions progressively aggregate angular sectors to capture signature leg-width geometries.
-            </li>
-            <li>
-              <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block operates across the <em>N</em> temporal tokens, correlating consecutive scans to implicitly infer pedestrian gait velocities and relative dynamics.
-            </li>
-            <li>
-              <strong>Feature Fusion & Shared Trunk:</strong> The output spatiotemporal embeddings are concatenated with the robot's ego-goal stack and kinematic state vector, and then processed by a 2-layer MLP (hidden dimensions 256 and 128).
-            </li>
-            <li>
-              <strong>Adaptable RL Heads:</strong> The trunk seamlessly branches into policy (Actor) and value (Critic) heads configured specifically for on-policy (PPO) or off-policy/distributional RL (SAC, TQC).
-            </li>
-          </ul>
+          <div style="display: inline-block; text-align: left; max-width: 700px;">
+            <p><strong>Key Components:</strong></p>
+            <ul>
+              <li>
+                <strong>Perception Trunk (1D-CNN):</strong> A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal LiDAR frames[cite: 2].
+              </li>
+              <li>
+                <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block correlates tokens across the temporal stack to implicitly capture leg motion and dynamic trends[cite: 2].
+              </li>
+              <li>
+                <strong>Feature Fusion:</strong> Spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors and passed to a 2-layer MLP[cite: 2].
+              </li>
+              <li>
+                <strong>Custom RL Heads:</strong> The trunk supports adaptable actor and critic heads tailored for PPO, SAC, and TQC training[cite: 2].
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
