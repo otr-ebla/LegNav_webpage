@@ -123,23 +123,23 @@
             <h1 class="title is-1 publication-title">Learning Social Robot Navigation By Sensing Human Legs</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://github.com/otr-ebla" target="_blank">Alberto Vaglio</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="#" target="_blank">Andrea Garulli</a>,</span>
-                  <span class="author-block">
-                    <a href="#" target="_blank">Antonio Giannitrapani</a>,
-                  </span>
-                  <span class="author-block">
-                    <a href="#" target="_blank">Renato Quartullo</a>,
-                  </span>
-                  <span class="author-block">
-                    <a href="#" target="_blank">Tommaso Van Der Meer</a>
-                  </span>
+                <a href="https://github.com/otr-ebla" target="_blank">Alberto Vaglio</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=4rFwUskAAAAJ&hl=en&oi=ao" target="_blank">Andrea Garulli</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=0eeBLTYAAAAJ&hl=en&oi=ao" target="_blank">Antonio Giannitrapani</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=Dl4lZcEAAAAJ&hl=en&oi=ao" target="_blank">Renato Quartullo</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=-o4MmxgAAAAJ&hl=en&oi=ao" target="_blank">Tommaso Van Der Meer</a><sup>1</sup>
+              </span>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">University of Siena & Uninettuno University<br>Preprint submitted to Elsevier</span>
-              <span class="eql-cntrb"><small><br><sup>*</sup>Corresponding Author</small></span>
+              <span class="author-block"><sup>1</sup>Department of Information Engineering and Mathematics (DIISM), University of Siena</span><br>
+              <span class="author-block"><sup>2</sup>Uninettuno University, Rome, Italy</span><br>
+              <span class="author-block">Preprint submitted to Elsevier[cite: 2]</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Corresponding Author[cite: 2]</small></span>
             </div>
 
             <div class="column has-text-centered">
@@ -180,7 +180,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Robots navigating among pedestrians typically sense their surroundings with a 2D LiDAR mounted close to the ground. At that height, the sensor mostly sees moving legs rather than whole people, yet most learning-based navigation methods still treat pedestrians as simple shapes like circles. This paper addresses that gap with CALF (Convolutional Attention for Leg Features), an end-to-end neural architecture that combines convolutional layers, attention, and MLP to interpret leg motion directly from LiDAR scans and produce safe navigation commands. The CALF policy is trained using deep reinforcement learning algorithms within LegNav, a custom lightweight 2D simulator that combines 2D LIDAR ray tracing with a novel pedestrian gait model. The resulting policy is compared against classical and learning-based baselines in terms of navigation performance and social compliance. The approach is validated through real-world experiments via zero-shot deployment on a TurtleBot 4, yielding smooth and socially compliant trajectories. Written in JAX, the LegNav simulator enables the training of a deployment-ready CALF policy in under an hour on a single consumer GPU.
+            Robots navigating among pedestrians typically sense their surroundings with a 2D LiDAR mounted close to the ground[cite: 2]. At that height, the sensor mostly sees moving legs rather than whole people, yet most learning-based navigation methods still treat pedestrians as simple shapes like circles[cite: 2]. This paper addresses that gap with CALF (Convolutional Attention for Leg Features), an end-to-end neural architecture that combines convolutional layers, attention, and MLP to interpret leg motion directly from LiDAR scans and produce safe navigation commands[cite: 2]. The CALF policy is trained using deep reinforcement learning algorithms within LegNav, a custom lightweight 2D simulator that combines 2D LIDAR ray tracing with a novel pedestrian gait model[cite: 2]. The resulting policy is compared against classical and learning-based baselines in terms of navigation performance and social compliance[cite: 2]. The approach is validated through real-world experiments via zero-shot deployment on a TurtleBot 4, yielding smooth and socially compliant trajectories[cite: 2]. Written in JAX, the LegNav simulator enables the training of a deployment-ready CALF policy in under an hour on a single consumer GPU[cite: 2].
           </p>
         </div>
       </div>
@@ -208,7 +208,7 @@
         <h3 class="title is-4">The LiDAR Blind Spot</h3>
         <div class="content has-text-justified">
           <p>
-            Most mobile robots are equipped with 2D LiDAR sensors mounted between 10 and 20 cm above the ground. At this height, the horizontal laser plane intersects only the lower legs of nearby pedestrians, missing the shoe protruding below the scan plane. A standard adult shoe extends 20-30 cm forward from the ankle, creating a significant, undetected obstacle during close-range interactions. Despite this, most frameworks approximate humans as simple circular agents, completely ignoring leg dynamics and foot geometry.
+            Most mobile robots are equipped with 2D LiDAR sensors mounted between 10 and 20 cm above the ground[cite: 2]. At this height, the horizontal laser plane intersects only the lower legs of nearby pedestrians, missing the shoe protruding below the scan plane[cite: 2]. A standard adult shoe extends 20-30 cm forward from the ankle, creating a significant, undetected obstacle during close-range interactions[cite: 2, 3]. Despite this, most frameworks approximate humans as simple circular agents, completely ignoring leg dynamics and foot geometry[cite: 2].
           </p>
         </div>
       </div>
@@ -220,7 +220,7 @@
         <h3 class="title is-4">Non-Slip Gait (NSG) Model</h3>
         <div class="content has-text-justified">
           <p>
-            To capture realistic leg dynamics, we propose the Non-Slip Gait (NSG) model, which represents each pedestrian as two alternatively moving feet rather than a single disc. To avoid unrealistic artifacts like foot-skating, each foot is explicitly anchored to its last touchdown position during the stance phase, and it is free to swing only during the active half-cycle. The swing-foot target dynamically updates to match the body's forward progress.
+            To capture realistic leg dynamics, we propose the Non-Slip Gait (NSG) model, which represents each pedestrian as two alternatively moving feet rather than a single disc[cite: 2]. To avoid unrealistic artifacts like foot-skating, each foot is explicitly anchored to its last touchdown position during the stance phase, and it is free to swing only during the active half-cycle[cite: 2]. The swing-foot target dynamically updates to match the body's forward progress[cite: 2, 5].
           </p>
         </div>
       </div>
@@ -238,7 +238,7 @@
         <h3 class="title is-4">LegNav 2D Simulator</h3>
         <div class="content has-text-justified">
           <p>
-            The NSG model is embedded in LegNav, a custom lightweight 2D simulation environment implemented entirely in JAX. In this environment, each pedestrian's footprint is ray-traced individually by the simulated 2D LiDAR, replicating the exact sensor signatures a real robot encounters. This approach allows the CALF (Convolutional Attention for Leg Features) network to directly map raw sensor measurements to velocity commands while explicitly handling the complex ankle-height LiDAR observations generated by pedestrians.
+            The NSG model is embedded in LegNav, a custom lightweight 2D simulation environment implemented entirely in JAX[cite: 2]. In this environment, each pedestrian's footprint is ray-traced individually by the simulated 2D LiDAR, replicating the exact sensor signatures a real robot encounters[cite: 2, 4]. This approach allows the CALF (Convolutional Attention for Leg Features) network to directly map raw sensor measurements to velocity commands while explicitly handling the complex ankle-height LiDAR observations generated by pedestrians[cite: 2].
           </p>
         </div>
       </div>
@@ -257,7 +257,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">CALF Network Architecture</h2>
         <p class="subtitle is-6 has-text-grey">
-          Convolutional Attention for Leg Features: End-to-end processing of multi-frame LiDAR scans
+          Convolutional Attention for Leg Features: End-to-end processing of multi-frame LiDAR scans[cite: 2]
         </p>
       </div>
     </div>
@@ -268,7 +268,7 @@
         <figure class="image is-inline-block">
           <img src="static/images/calf_architecture.png" alt="CALF Policy Architecture Diagram" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #ffffff; padding: 1rem; max-width: 100%; height: auto;" />
           <figcaption class="has-text-grey is-size-7 has-text-centered" style="margin-top: 0.75rem;">
-            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states.
+            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states[cite: 2].
           </figcaption>
         </figure>
       </div>
@@ -279,22 +279,22 @@
       <div class="column is-four-fifths">
         <div class="content has-text-centered">
           <p>
-            The <strong>CALF</strong> architecture maps raw temporal LiDAR scans directly to motion commands without requiring explicit pedestrian detection, tracking, or velocity estimation modules.
+            The <strong>CALF</strong> architecture maps raw temporal LiDAR scans directly to motion commands without requiring explicit pedestrian detection, tracking, or velocity estimation modules[cite: 2].
           </p>
           <div style="display: inline-block; text-align: left; max-width: 700px;">
             <p><strong>Key Components:</strong></p>
             <ul>
               <li>
-                <strong>Perception Trunk (1D-CNN):</strong> A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal LiDAR frames.
+                <strong>Perception Trunk (1D-CNN):</strong> A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal LiDAR frames[cite: 2].
               </li>
               <li>
-                <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block correlates tokens across the temporal stack to implicitly capture leg motion and dynamic trends.
+                <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block correlates tokens across the temporal stack to implicitly capture leg motion and dynamic trends[cite: 2].
               </li>
               <li>
-                <strong>Feature Fusion:</strong> Spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors and passed to a 2-layer MLP.
+                <strong>Feature Fusion:</strong> Spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors and passed to a 2-layer MLP[cite: 2].
               </li>
               <li>
-                <strong>Custom RL Heads:</strong> The trunk supports adaptable actor and critic heads tailored for PPO, SAC, and TQC training.
+                <strong>Custom RL Heads:</strong> The trunk supports adaptable actor and critic heads tailored for PPO, SAC, and TQC training[cite: 2].
               </li>
             </ul>
           </div>
@@ -357,3 +357,4 @@
 </main>
 </body>
 </html>
+```<FollowUp>Would you like to add your own Google Scholar link to your name alongside the other co-authors?</FollowUp>
