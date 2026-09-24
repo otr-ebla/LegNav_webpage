@@ -196,6 +196,59 @@
 </section>
 <!-- End Methodology Section -->
 
+<!-- CALF Network Architecture Section -->
+<section class="section is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">CALF Network Architecture</h2>
+        <p class="subtitle is-6 has-text-grey">
+          Convolutional Attention for Leg Features: End-to-end processing of multi-frame LiDAR scans
+        </p>
+      </div>
+    </div>
+
+    <!-- Architecture Diagram -->
+    <div class="columns is-centered">
+      <div class="column is-11 has-text-centered">
+        <figure class="image">
+          <img src="static/images/calf_architecture.png" alt="CALF Policy Architecture Diagram" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #ffffff; padding: 1rem;" />
+          <figcaption class="has-text-grey is-size-7" style="margin-top: 0.75rem;">
+            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Architecture Details -->
+    <div class="columns is-centered" style="margin-top: 1.5rem;">
+      <div class="column is-10">
+        <div class="content has-text-justified">
+          <p>
+            The <strong>CALF</strong> architecture is tailored to extract spatiotemporal patterns from ankle-height LiDAR returns without requiring explicit tracking or clustering pipelines:
+          </p>
+          <ul>
+            <li>
+              <strong>Perception Trunk (1D-CNN):</strong> A 3-layer 1D convolutional network with shared weights across the temporal stack processes each individual range scan. Strided convolutions progressively aggregate angular sectors to capture signature leg-width geometries.
+            </li>
+            <li>
+              <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block operates across the <em>N</em> temporal tokens, correlating consecutive scans to implicitly infer pedestrian gait velocities and relative dynamics.
+            </li>
+            <li>
+              <strong>Feature Fusion & Shared Trunk:</strong> The output spatiotemporal embeddings are concatenated with the robot's ego-goal stack and kinematic state vector, and then processed by a 2-layer MLP (hidden dimensions 256 and 128).
+            </li>
+            <li>
+              <strong>Adaptable RL Heads:</strong> The trunk seamlessly branches into policy (Actor) and value (Critic) heads configured specifically for on-policy (PPO) or off-policy/distributional RL (SAC, TQC).
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- End CALF Network Architecture Section -->
+
 <!-- Youtube video -->
 <section class="hero is-small is-light">
   <div class="hero-body">
