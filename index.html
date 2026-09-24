@@ -50,11 +50,63 @@
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="static/js/index.js"></script>
+  
+  <style>
+    body, h1, h2, h3, h4, h5, h6, .title, .subtitle, p, span, a, button {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Title styling */
+    .publication-title {
+      font-weight: 700 !important;
+      letter-spacing: -0.03em !important;
+      color: #262626 !important;
+      line-height: 1.2 !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    /* Authors line */
+    .publication-authors {
+      color: #4a4a4a !important;
+      font-weight: 400 !important;
+      font-size: 1.15rem !important;
+      line-height: 1.6 !important;
+    }
+
+    .publication-authors a {
+      color: #4a4a4a !important;
+      text-decoration: none !important;
+    }
+
+    .publication-authors a:hover {
+      color: #000000 !important;
+      text-decoration: underline !important;
+    }
+
+    /* Rounded pill buttons */
+    .publication-links .button {
+      font-weight: 500 !important;
+      border-radius: 9999px !important;
+      padding-left: 1.3rem !important;
+      padding-right: 1.3rem !important;
+      background-color: #2b2b2b !important;
+      border: none !important;
+      color: #ffffff !important;
+      transition: background-color 0.2s ease, transform 0.1s ease !important;
+    }
+
+    .publication-links .button:hover {
+      background-color: #404040 !important;
+      transform: translateY(-1px);
+    }
+  </style>
 </head>
 <body>
 
@@ -216,7 +268,7 @@
         <figure class="image is-inline-block">
           <img src="static/images/calf_architecture.png" alt="CALF Policy Architecture Diagram" style="border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #ffffff; padding: 1rem; max-width: 100%; height: auto;" />
           <figcaption class="has-text-grey is-size-7 has-text-centered" style="margin-top: 0.75rem;">
-            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states[cite: 2].
+            Overview of the CALF architecture: stacked 2D LiDAR scans pass through a shared 1D-CNN encoder and a multi-head temporal self-attention block before being fused with global navigation states.
           </figcaption>
         </figure>
       </div>
@@ -227,22 +279,22 @@
       <div class="column is-four-fifths">
         <div class="content has-text-centered">
           <p>
-            The <strong>CALF</strong> architecture maps raw temporal LiDAR scans directly to motion commands without requiring explicit pedestrian detection, tracking, or velocity estimation modules[cite: 2].
+            The <strong>CALF</strong> architecture maps raw temporal LiDAR scans directly to motion commands without requiring explicit pedestrian detection, tracking, or velocity estimation modules.
           </p>
           <div style="display: inline-block; text-align: left; max-width: 700px;">
             <p><strong>Key Components:</strong></p>
             <ul>
               <li>
-                <strong>Perception Trunk (1D-CNN):</strong> A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal LiDAR frames[cite: 2].
+                <strong>Perception Trunk (1D-CNN):</strong> A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal LiDAR frames.
               </li>
               <li>
-                <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block correlates tokens across the temporal stack to implicitly capture leg motion and dynamic trends[cite: 2].
+                <strong>Multi-Head Temporal Self-Attention:</strong> A 4-head attention block correlates tokens across the temporal stack to implicitly capture leg motion and dynamic trends.
               </li>
               <li>
-                <strong>Feature Fusion:</strong> Spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors and passed to a 2-layer MLP[cite: 2].
+                <strong>Feature Fusion:</strong> Spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors and passed to a 2-layer MLP.
               </li>
               <li>
-                <strong>Custom RL Heads:</strong> The trunk supports adaptable actor and critic heads tailored for PPO, SAC, and TQC training[cite: 2].
+                <strong>Custom RL Heads:</strong> The trunk supports adaptable actor and critic heads tailored for PPO, SAC, and TQC training.
               </li>
             </ul>
           </div>
