@@ -68,6 +68,17 @@
     .abstract-copy p, .section-copy p { margin: 0; }
     .paper-figure { max-width: 880px; margin: 0 auto 20px; }
     .paper-figure img { display: block; max-height: 530px; width: 100%; object-fit: contain; margin: 0 auto; }
+    .simulator-figure { width: min(100%, 580px); max-width: 580px; }
+    .simulator-figure img { max-height: 370px; }
+    .section-copy p + p { margin-top: 14px; }
+    .subheading { max-width: 760px; margin: 26px auto 10px; font-size: 1.05rem; font-weight: 700; color: #292929; }
+    .results-table-wrap { max-width: 820px; margin: 22px auto 12px; overflow-x: auto; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: .82rem; line-height: 1.45; white-space: nowrap; }
+    .results-table th, .results-table td { padding: 10px 12px; border-bottom: 1px solid #e4e4e4; text-align: right; }
+    .results-table th:first-child, .results-table td:first-child { text-align: left; }
+    .results-table thead { background: #f5f5f5; }
+    .results-table tbody tr.highlight { background: #f5f8f7; font-weight: 700; }
+    .table-note { max-width: 820px; margin: 0 auto 22px; color: #666; font-size: .75rem; line-height: 1.6; }
     .two-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: center; max-width: 900px; margin: 0 auto 20px; }
     .two-figures figure { margin: 0; }
     .two-figures img { display: block; width: 100%; max-height: 320px; object-fit: contain; }
@@ -131,6 +142,17 @@
     </div>
   </section>
 
+  <section class="section" id="introduction">
+    <div class="page-container">
+      <h2 class="title section-title">Why sensing legs matters</h2>
+      <div class="section-copy">
+        <p>Social navigation asks a robot to reach its goal while avoiding collisions, keeping a comfortable distance from people, and yielding when a pedestrian blocks its path. A common shortcut in simulation is to represent each person as a single disc. That is convenient for planning, but it does not resemble what an ankle-height 2D LiDAR actually measures: two small clusters of returns from legs, changing position as the person walks.</p>
+        <p>The mismatch matters at close range. A laser beam can strike a shin while passing above the front of a shoe, leaving part of the pedestrian's footprint invisible to the sensor. A policy trained on idealized discs may therefore learn the wrong spatial and temporal cues. The paper addresses this at two levels: the Non-Slip Gait (NSG) model gives simulated pedestrians alternating feet and realistic shoe footprints, while the CALF policy learns directly from sequences of raw LiDAR scans rather than requiring a separate person detector and tracker.</p>
+        <p>LegNav brings these pieces together in a JAX-based 2D simulator. Its ray-traced LiDAR observations are used to train the policy with reinforcement learning, and the resulting controller is evaluated in unseen simulated layouts and deployed on a physical TurtleBot 4 without additional training.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="method">
     <div class="page-container">
       <h2 class="title section-title">The LiDAR Blind Spot &amp; Non-Slip Gait Model</h2>
@@ -145,7 +167,7 @@
   <section class="section" id="simulator">
     <div class="page-container">
       <h2 class="title section-title">LegNav 2D Simulator</h2>
-      <figure class="paper-figure"><img src="static/images/sim_env.png" alt="LegNav simulation environment" loading="lazy"><figcaption>The LegNav environment simulates pedestrians as individual moving foot pairs and ray-traces their LiDAR returns.</figcaption></figure>
+      <figure class="paper-figure simulator-figure"><img src="static/images/sim_env.png" alt="LegNav simulation environment" loading="lazy"><figcaption>The LegNav environment simulates pedestrians as individual moving foot pairs and ray-traces their LiDAR returns.</figcaption></figure>
       <div class="section-copy"><p><strong>High-throughput physical simulation.</strong> The NSG model is embedded in LegNav, a custom lightweight 2D simulation environment implemented entirely in JAX. Each pedestrian's footprint is ray-traced individually by the simulated 2D LiDAR, replicating the sensor signatures a real robot encounters. This allows our policy to map raw sensor measurements directly to velocity commands while handling complex ankle-height observations.</p></div>
     </div>
   </section>
@@ -154,7 +176,40 @@
     <div class="page-container">
       <h2 class="title section-title">CALF Network Architecture</h2>
       <figure class="paper-figure"><img src="static/images/calf_architecture.png" alt="CALF policy architecture diagram" loading="lazy"><figcaption>CALF processes temporal LiDAR scans with convolution and attention, then combines the resulting features with goal and kinematic inputs.</figcaption></figure>
-      <div class="section-copy"><p><strong>Convolutional Attention for Leg Features.</strong> The CALF architecture maps raw temporal LiDAR scans directly to motion commands. A 3-layer weight-shared 1D-CNN progressively encodes spatial clusters across the temporal frames, while a 4-head attention block correlates these tokens to implicitly capture leg motion and dynamic trends. Finally, spatiotemporal LiDAR embeddings are concatenated with the robot's goal and kinematic vectors, feeding into adaptable actor-critic heads.</p></div>
+      <div class="section-copy">
+        <p><strong>From scans to actions.</strong> CALF (Convolutional Attention for Leg Features) is an end-to-end policy: it uses a short history of 2D LiDAR scans, the goal expressed relative to the robot, and the robot's kinematic state to generate linear and angular velocity commands. Processing several scans lets it infer motion from changing leg returns without explicitly detecting or tracking each pedestrian.</p>
+        <p><strong>Spatial encoding.</strong> Each scan passes independently through the same three-layer 1D convolutional encoder. Sharing weights across frames means the same patterns are recognized throughout the scan history. The layers progressively aggregate neighboring LiDAR beams into features that can represent leg-shaped clusters; each frame is then reduced to a 64-dimensional token.</p>
+        <p><strong>Temporal attention and fusion.</strong> A four-head self-attention layer relates those tokens across time to capture how the scene changes. Its output is combined with the goal history and current kinematic values, then passed through a two-layer MLP. Actor and critic heads turn the shared representation into a policy for the chosen reinforcement-learning method. The paper trains this architecture with PPO, SAC, and TQC and compares the resulting behaviors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="evaluation">
+    <div class="page-container">
+      <h2 class="title section-title">Experiments and Results</h2>
+      <div class="section-copy">
+        <p><strong>Training and generalization.</strong> The policies were trained across seven simulated situations, including crossing traffic, oncoming corridor traffic, bottlenecks, intersections, and stationary groups. The robot's start and goal positions and pedestrian positions were randomized. Evaluation then used six additional layouts that the policies had not seen during training, including an S-shaped corridor, connected rooms, converging crowds, and a long corridor. The paper also tests maximum robot speeds from 0.2 to 2.0 m/s.</p>
+        <p><strong>What was measured.</strong> The benchmark records whether the robot reaches its goal, collides, or times out; how directly and quickly it travels; its closest distance to a person; the smoothness of its turning; and how often it maintains space or stops when someone occupies the frontal yield zone. These measures help distinguish a cautious controller that stalls from one that yields and then continues.</p>
+      </div>
+      <h3 class="subheading">Comparison on unseen simulation scenarios</h3>
+      <div class="results-table-wrap">
+        <table class="results-table">
+          <thead><tr><th scope="col">Method</th><th scope="col">Success</th><th scope="col">Active collisions</th><th scope="col">Angular jerk</th><th scope="col">Yielding score</th></tr></thead>
+          <tbody>
+            <tr><td>DWA</td><td>77.7%</td><td>0.9%</td><td>1.5 rad/s³</td><td>64.5%</td></tr>
+            <tr><td>TAGD</td><td>88.2%</td><td>7.3%</td><td>24.5 rad/s³</td><td>63.0%</td></tr>
+            <tr><td>CALF + PPO, disc pedestrians</td><td>73.1%</td><td>24.5%</td><td>8.6 rad/s³</td><td>2.9%</td></tr>
+            <tr class="highlight"><td>CALF + PPO</td><td>95.1%</td><td>3.3%</td><td>6.8 rad/s³</td><td>32.4%</td></tr>
+            <tr><td>CALF + SAC</td><td>88.3%</td><td>10.1%</td><td>24.3 rad/s³</td><td>14.8%</td></tr>
+            <tr><td>CALF + TQC</td><td>82.8%</td><td>14.6%</td><td>11.0 rad/s³</td><td>5.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">Selected measures from Table 4 of the paper. Angular jerk is lower for smoother turning. Results use unseen test scenarios with maximum speed sampled between 0.2 and 2.0 m/s.</p>
+      <div class="section-copy">
+        <p><strong>Algorithm comparison.</strong> CALF trained with PPO achieves the highest success rate in the aggregate benchmark (95.1%) and the lowest active collision rate among the learning-based methods shown in the paper (3.3%). SAC and TQC also reach goals, but have higher active collision rates; PPO produces smoother turns than either. DWA is very cautious and has fewer active collisions, yet its 20.1% timeout rate limits its success to 77.7%. The yielding score should be read alongside progress: stopping for a person is useful only if the robot can resume its route.</p>
+        <p><strong>Does the leg model help?</strong> The paper repeats PPO training with pedestrians represented as discs instead of articulated foot pairs. In that ablation, success drops from 95.1% to 73.1%, active collisions rise from 3.3% to 24.5%, and the yielding score falls from 32.4% to 2.9%. A plain MLP policy also reaches only 64.5% success, supporting the value of the CALF perception architecture. These comparisons isolate why realistic leg-level observations and an architecture that can process their motion matter.</p>
+      </div>
     </div>
   </section>
 
@@ -162,6 +217,7 @@
     <div class="page-container">
       <h2 class="title section-title">Real-World Deployment</h2>
       <div class="publication-video"><iframe src="https://www.youtube.com/embed/P6gFTvi3k7w" title="LegNav real-world deployment" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div class="section-copy" style="margin-top: 22px;"><p>The PPO-trained CALF policy was transferred without fine-tuning to a TurtleBot 4 with an ankle-height RPLidar A1. In indoor experiments with five to six people, the robot navigated between waypoints, avoided pedestrians in advance, and yielded when a person blocked the available passing space. The video shows this qualitative real-world validation; the percentages above are from the separate simulation benchmark.</p></div>
     </div>
   </section>
 
